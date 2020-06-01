@@ -7,6 +7,7 @@
 #'
 #' @param dBm
 #' Bandwidth to compute the variance of the sample mean
+#' Also used for the lag of sample autocorrelation functions
 #'
 #' @param vname
 #' labels for parameters

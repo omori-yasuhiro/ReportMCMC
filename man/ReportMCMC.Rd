@@ -11,7 +11,8 @@ ReportMCMC(mx, dBm = NULL, vname = NULL, soutfilename = NULL)
 \item{mx}{MCMC output
 n x K matrix where n: number of samples, K: number of parameters}
 
-\item{dBm}{Bandwidth to compute the variance of the sample mean}
+\item{dBm}{Bandwidth to compute the variance of the sample mean
+Also used for the lag of sample autocorrelation functions}
 
 \item{vname}{labels for parameters}
 
