@@ -128,6 +128,17 @@ ReportMCMC <-function(mx, dBm=NULL, vname=NULL, soutfilename=NULL)
   }
   dev.off()
 
+  # Output on screen
+  par(mfrow=vdisp, plt = c(0.2,0.8,0.4,0.8))
+  for(i in 1:cdim)
+  {
+    if( cdim==1 ){ vx = mx;}
+    else         { vx = mx[,i];}
+    # plot thinned MCMC samples
+    vx.thinned = vx[seq(1, length(vx), by = max(1,floor(length(vx)/1000)))]
+    plot.ts(vx.thinned, xlab="Iteration", ylab=vname[i], main="")
+  }
+
   ################################################################
   # Sample autocorrelation function
   ################################################################
@@ -142,11 +153,29 @@ ReportMCMC <-function(mx, dBm=NULL, vname=NULL, soutfilename=NULL)
     }
   dev.off()
 
+  # Output on screen
+  par(mfrow=vdisp, plt = c(0.2,0.8,0.4,0.8))
+  for(i in 1:cdim)
+  {
+    if( cdim==1 ){ vx = mx;}
+    else         { vx = mx[,i];}
+    autocorr.plot(vx, lag.max=floor(length(vx)*0.05), auto.layout=FALSE, main=vname[i])
+  }
+
   ################################################################
   # Estimated posterior density
   ################################################################
   fname = paste(soutfilename,"_Density_it_",cRep,".pdf",sep="")
   pdf(file=fname)
+  par(mfrow=vdisp, plt = c(0.2,0.8,0.4,0.8))
+  for(i in 1:cdim)
+  {
+    if( cdim==1 ){ vx = mx;}
+    else         { vx = mx[,i];}
+    plot(density(vx), xlab=vname[i], main ="")
+  }
+  dev.off()
+  # Output on screen
   par(mfrow=vdisp, plt = c(0.2,0.8,0.4,0.8))
   for(i in 1:cdim)
   {
