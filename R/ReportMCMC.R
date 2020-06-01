@@ -183,5 +183,4 @@ ReportMCMC <-function(mx, dBm=NULL, vname=NULL, soutfilename=NULL)
     else         { vx = mx[,i];}
     plot(density(vx), xlab=vname[i], main ="")
   }
-  dev.off()
 }
