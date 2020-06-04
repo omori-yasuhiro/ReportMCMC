@@ -112,6 +112,8 @@ ReportMCMC <-function(mx, dBm=NULL, vname=NULL, soutfilename=NULL)
   else if(cdim == 3){vdisp=c(3,1);}
   else if(cdim == 4){vdisp=c(2,2);}
   else              {vdisp=c(4,2);}
+  
+  defaultPar <- par(no.readonly = TRUE)
   ################################################################
   # Sample path
   ################################################################
@@ -183,4 +185,5 @@ ReportMCMC <-function(mx, dBm=NULL, vname=NULL, soutfilename=NULL)
     else         { vx = mx[,i];}
     plot(density(vx), xlab=vname[i], main ="")
   }
+  par(defaultPar)
 }
