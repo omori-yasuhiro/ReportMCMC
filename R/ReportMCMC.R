@@ -112,7 +112,7 @@ ReportMCMC <-function(mx, dBm=NULL, vname=NULL, soutfilename=NULL)
   else if(cdim == 3){vdisp=c(3,1);}
   else if(cdim == 4){vdisp=c(2,2);}
   else              {vdisp=c(4,2);}
-  
+
   defaultPar <- par(no.readonly = TRUE)
   ################################################################
   # Sample path
@@ -137,8 +137,9 @@ ReportMCMC <-function(mx, dBm=NULL, vname=NULL, soutfilename=NULL)
     if( cdim==1 ){ vx = mx;}
     else         { vx = mx[,i];}
     # plot thinned MCMC samples
-    vx.thinned = vx[seq(1, length(vx), by = max(1,floor(length(vx)/1000)))]
-    plot.ts(vx.thinned, xlab="Iteration", ylab=vname[i], main="")
+    vx.ind     = seq(1, length(vx), by = max(1,floor(length(vx)/1000)))
+    vx.thinned = vx[vx.ind]
+    plot(vx.ind, vx.thinned, xlab="Iteration", ylab=vname[i], main="", type="l")
   }
 
   ################################################################
